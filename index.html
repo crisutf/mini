@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCrisutf</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Landing Page Content -->
+        <div id="landing-view">
+            <h1>Crisutf</h1>
+            <span class="url-display">ccrisu.pages.dev</span>
+        </div>
+
+        <!-- Redirecting State -->
+        <div id="redirect-view" class="loader">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-view" class="error-message">
+            <p>Enlace no encontrado</p>
+        </div>
+    </div>
+
+    <script>
+        async function handleRedirect() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const destinationKey = urlParams.get('d');
+
+            const landingView = document.getElementById('landing-view');
+            const redirectView = document.getElementById('redirect-view');
+            const errorView = document.getElementById('error-view');
+
+            // If no 'd' parameter, stay on landing page
+            if (!destinationKey) {
+                return;
+            }
+
+            // Switch to loading state
+            landingView.style.display = 'none';
+            redirectView.style.display = 'flex';
+
+            try {
+                const response = await fetch('links.json');
+                if (!response.ok) throw new Error('Failed to load links');
+
+                const links = await response.json();
+                const targetUrl = links[destinationKey];
+
+                if (targetUrl) {
+                    // Instant redirect
+                    window.location.replace(targetUrl);
+                } else {
+                    throw new Error('Link not found');
+                }
+            } catch (error) {
+                console.error(error);
+                redirectView.style.display = 'none';
+                landingView.style.display = 'block';
+                errorView.style.display = 'block';
+            }
+        }
+
+        // Run on load
+        handleRedirect();
+    </script>
+</body>
+
+</html>
