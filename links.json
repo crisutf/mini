@@ -2,9 +2,10 @@
     "crisu": "https://crisu.qzz.io",
     "github": "https://github.com/Crisutf",
     "calendario": "https://calendario.crisu.qzz.io",
-    "cdn": "https://cdn.crisu.qzz.io"
+    "cdn": "https://cdn.crisu.qzz.io",
     "cdnleilos": "https://cdn.leilos.qzz.io",
-    "leilosgit": "https://github.com/LeilosFN/cdn"
+    "leilos": "https://leilos.qzz.io",
+    "servers": "https://launcher.leilos.qzz.io"
 }
 
 

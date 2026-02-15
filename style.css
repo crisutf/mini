@@ -75,6 +75,12 @@ h1 {
     -webkit-text-fill-color: transparent;
 }
 
+.subtitle {
+    margin-top: 0.2rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
 .url-display {
     display: inline-block;
     font-size: 1rem;
@@ -83,6 +89,95 @@ h1 {
     letter-spacing: 0.01em;
     margin-top: 0.5rem;
     text-shadow: 0 0 20px rgba(41, 151, 255, 0.3);
+}
+
+.shortener-form {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+}
+
+.shortener-form input {
+    flex: 1;
+    padding: 0.6rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(15, 15, 25, 0.8);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.shortener-form input::placeholder {
+    color: var(--text-secondary);
+}
+
+.shortener-form button {
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #2997ff, #5ac8fa);
+    color: #000;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, filter 0.12s ease-out;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+}
+
+.shortener-form button:active {
+    transform: scale(0.97) translateY(1px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    filter: brightness(0.95);
+}
+
+.helper-text {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.links-section {
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.links-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.links-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.link-item {
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(15, 15, 25, 0.85);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.12s ease-out, transform 0.12s ease-out, box-shadow 0.12s ease-out;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+}
+
+.link-item:hover {
+    background: rgba(41, 151, 255, 0.18);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
+    transform: translateY(-1px);
+}
+
+.link-item:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
 }
 
 /* Loading State - Minimal Spinner */
