@@ -15,25 +15,30 @@
         <div id="landing-view">
             <h1>Crisutf</h1>
 
+
         <!-- Redirecting State -->
         <div id="redirect-view" class="loader">
             <div class="spinner"></div>
+            <p>Redirigiendo...</p>
         </div>
 
         <!-- Error State -->
-        <div id="error-view" class="error-message">
+        <div id="error-view" class="error-message" style="display: none;">
             <p id="error-text">Enlace no encontrado</p>
+            <button onclick="location.href='/'" class="back-button">Volver</button>
         </div>
     </div>
 
     <script>
+        const LINKS_URL = 'https://cdn.crisu.qzz.io/mini/links.json';
+
         async function handleRedirect() {
             const urlParams = new URLSearchParams(window.location.search);
             let destinationKey = urlParams.get('d');
 
             if (!destinationKey) {
                 const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
-                if (path) {
+                if (path && path !== 'index.html') {
                     destinationKey = path;
                 }
             }
@@ -52,7 +57,7 @@
             redirectView.style.display = 'flex';
 
             try {
-                const response = await fetch('links.json');
+                const response = await fetch(LINKS_URL);
                 if (!response.ok) throw new Error('Failed to load links');
 
                 const links = await response.json();
@@ -81,7 +86,7 @@
             if (!section || !list) return;
 
             try {
-                const response = await fetch('links.json');
+                const response = await fetch(LINKS_URL);
                 if (!response.ok) return;
 
                 const links = await response.json();
