@@ -3,18 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="https://cdn.crisu.qzz.io/files/png/crisutf/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCrisutf</title>
+    <title>Crisutf · Mini</title>
+    <meta name="theme-color" content="#f4e4c4">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="background-glow"></div>
     <div class="container">
         <!-- Landing Page Content -->
         <div id="landing-view">
             <h1>Crisutf</h1>
-
+        </div>
 
         <!-- Redirecting State -->
         <div id="redirect-view" class="loader">
@@ -52,7 +53,6 @@
                 return;
             }
 
-            // Switch to loading state
             landingView.style.display = 'none';
             redirectView.style.display = 'flex';
 
@@ -80,72 +80,7 @@
             }
         }
 
-        async function loadLinks() {
-            const section = document.getElementById('links-section');
-            const list = document.getElementById('links-list');
-            if (!section || !list) return;
-
-            try {
-                const response = await fetch(LINKS_URL);
-                if (!response.ok) return;
-
-                const links = await response.json();
-                const entries = Object.entries(links);
-                if (!entries.length) return;
-
-                section.style.display = 'block';
-                list.innerHTML = '';
-
-                entries.forEach(function (entry) {
-                    const key = entry[0];
-                    const item = document.createElement('button');
-                    item.className = 'link-item';
-                    item.type = 'button';
-                    item.textContent = key;
-                    item.addEventListener('click', function () {
-                        window.location.href = '?d=' + encodeURIComponent(key);
-                    });
-                    list.appendChild(item);
-                });
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
         handleRedirect();
-
-        const codeInput = document.getElementById('code-input');
-        const goButton = document.getElementById('go-button');
-
-        function goToCode() {
-            if (!codeInput) return;
-            const value = codeInput.value.trim();
-            if (!value) return;
-            window.location.href = '?d=' + encodeURIComponent(value);
-        }
-
-        if (codeInput) {
-            codeInput.addEventListener('keydown', function (event) {
-                if (event.key === 'Enter') {
-                    goToCode();
-                }
-            });
-        }
-
-        if (goButton) {
-            goButton.addEventListener('click', function () {
-                goToCode();
-            });
-        }
-
-        window.addEventListener('load', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const hasParam = !!urlParams.get('d');
-            const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
-            if (!hasParam && !path) {
-                loadLinks();
-            }
-        });
     </script>
 </body>
 
